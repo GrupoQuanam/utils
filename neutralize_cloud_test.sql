@@ -1,3 +1,6 @@
+/* Comando para ejecutar desde la terminal del servidor, en caso se necesite añadir los demás parámetros a psql
+curl -s https://raw.githubusercontent.com/GrupoQuanam/utils/refs/heads/main/neutralize_cloud_test.sql | psql
+*/
 do $$
 declare
     nubefact              integer := 0;
