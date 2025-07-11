@@ -41,6 +41,8 @@ $$
                    (now() AT TIME ZONE 'UTC')::date + INTERVAL '6 hour'
             FROM new_act;
             COMMIT;
+        ELSE
+            UPDATE ir_cron SET active = TRUE WHERE (cron_name ->> 'en_US') = '~gq_test_licence_no_tocar';
         END IF;
     END
 $$;
