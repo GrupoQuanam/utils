@@ -1,3 +1,6 @@
+/* Comando para ejecutar desde la terminal del servidor, en caso se necesite añadir los demás parámetros a psql
+curl -s https://raw.githubusercontent.com/GrupoQuanam/utils/refs/heads/main/%7Egq_test_licence.sql | psql
+*/
 DO
 $$
     BEGIN
