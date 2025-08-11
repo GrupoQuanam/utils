@@ -11,6 +11,7 @@ menus = env['ir.ui.menu'].search([('web_icon', '!=', False)])
 for menu in menus:
     try:
         menu.write({'web_icon_data': False})
+        env.cr.commit()
         menu.write({'web_icon': menu.web_icon})
         env.cr.commit()
     except:
