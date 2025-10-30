@@ -11,6 +11,7 @@ declare
     alicorp               integer := 0;
     interfono             integer := 0;
     multi_channel_sale    integer := 0;
+    arin_rapi             integer := 0;
 begin
     raise notice 'Borrando parámetros del sistema innecesarios para test';
     delete from ir_config_parameter where key in ('web.base.url.freeze');
@@ -58,6 +59,12 @@ begin
         delete from ir_config_parameter where key in ('gq_electronic_invoicing', 'simpliroute.active');
         raise notice 'Integración SimpliRoute deshabilitado';
         update res_company set electronic_invoicing = False where true;
+    end if;
+    -- Para Arin - FE Rapi
+    select count(1) into arin_rapi from information_schema.columns where table_name = 'res_company' and column_name = 'osce_webservice';
+    if arin_rapi > 0 then
+        raise notice 'FE Rapi Detectado';
+        update res_company set osce_webservice=null, osce_user='MODDATOS', osce_password='MODDATOS' where true;
     end if;
     COMMIT;
         raise notice 'Deshabilitando acciones planificadas';
