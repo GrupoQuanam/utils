@@ -16,6 +16,12 @@ curl -s https://raw.githubusercontent.com/GrupoQuanam/utils/refs/heads/main/neut
 curl -s https://raw.githubusercontent.com/GrupoQuanam/utils/refs/heads/main/shell_menu_icon.py | odoo-bin shell
 ```
 
+#### 2. Borrar adjuntos sin filestore
+
+```bash
+curl -s https://raw.githubusercontent.com/GrupoQuanam/utils/refs/heads/main/shell_delete_filestore_v2.py | odoo-bin shell
+```
+
 ---
 
 # Ambientes quanam
@@ -26,6 +32,12 @@ curl -s https://raw.githubusercontent.com/GrupoQuanam/utils/refs/heads/main/shel
 curl -s https://raw.githubusercontent.com/GrupoQuanam/utils/refs/heads/main/shell_menu_icon.py | odoo-shell
 ```
 
+#### 2. Borrar adjuntos sin filestore
+
+```bash
+curl -s https://raw.githubusercontent.com/GrupoQuanam/utils/refs/heads/main/shell_delete_filestore_v2.py | odoo-shell
+```
+
 ---
 
 # Otros ambientes
@@ -34,4 +46,10 @@ curl -s https://raw.githubusercontent.com/GrupoQuanam/utils/refs/heads/main/shel
 
 ```bash
 curl -s https://raw.githubusercontent.com/GrupoQuanam/utils/refs/heads/main/shell_menu_icon.py | python3 odoo-bin shell -c odoo.conf --no-http
+```
+
+#### 2. Borrar adjuntos sin filestore
+
+```bash
+curl -s https://raw.githubusercontent.com/GrupoQuanam/utils/refs/heads/main/shell_delete_filestore_v2.py | python3 odoo-bin shell -c odoo.conf --no-http
 ```
