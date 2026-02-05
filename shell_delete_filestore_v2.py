@@ -9,6 +9,9 @@ files = env['ir.attachment'].sudo().with_context(prefetch_fields=False).search(
     [('id', '>', 0), ('type', '=', 'binary')], order='id')
 to_delete = env['ir.attachment']
 for file in files.exists():
+    if not file.store_fname:
+        to_delete += file
+        continue
     full_path = file._full_path(file.store_fname)
     if not os.path.exists(full_path):
         to_delete += file
