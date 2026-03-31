@@ -12,6 +12,7 @@ declare
     interfono             integer := 0;
     multi_channel_sale    integer := 0;
     arin_rapi             integer := 0;
+    pichihua_efact        integer := 0;
 begin
     raise notice 'Borrando parámetros del sistema innecesarios para test';
     delete from ir_config_parameter where key in ('web.base.url.freeze');
@@ -64,10 +65,17 @@ begin
     select count(1) into arin_rapi from information_schema.columns where table_name = 'res_company' and column_name = 'osce_webservice';
     if arin_rapi > 0 then
         raise notice 'FE Rapi Detectado';
-        update res_company set osce_webservice=null, osce_user='MODDATOS', osce_password='MODDATOS' where true;
+        update res_company set electronic_invoicing=False, electronic_billing_provider=null, osce_webservice=null, osce_user='MODDATOS', osce_password='MODDATOS' where true;
     end if;
     COMMIT;
-        raise notice 'Deshabilitando acciones planificadas';
+    -- Para Pichihua - Efact
+    select count(1) into pichihua_efact from information_schema.columns where table_name = 'res_company' and column_name = 'e_fact_url';
+    if pichihua_efact > 0 then
+        raise notice 'Pichihua - Efact Detectado';
+        update res_company set electronic_invoicing=False, electronic_billing_provider=null, e_fact_url=null, e_fact_user='MODDATOS', e_fact_pass='MODDATOS' where true;
+    end if;
+    COMMIT;
+    raise notice 'Deshabilitando acciones planificadas';
     update ir_cron set active = FALSE where true;
     COMMIT;
     raise notice 'Estableciendo noupdate a las acciones planificadas';
