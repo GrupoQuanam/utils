@@ -65,7 +65,7 @@ begin
     select count(1) into arin_rapi from information_schema.columns where table_name = 'res_company' and column_name = 'osce_webservice';
     if arin_rapi > 0 then
         raise notice 'FE Rapi Detectado';
-        update res_company set electronic_invoicing=False, electronic_billing_provider=null, osce_webservice=null, osce_user='MODDATOS', osce_password='MODDATOS' where true;
+        update res_company set electronic_invoicing=False, electronic_billing_provider='other', osce_webservice=null, osce_user='MODDATOS', osce_password='MODDATOS' where true;
     end if;
     COMMIT;
     -- Para Pichihua - Efact
